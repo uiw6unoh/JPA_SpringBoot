@@ -26,13 +26,10 @@ public class JpaMain {
             member.setUsername("member1");
             em.persist(member);
 
-            team.addMember(member);
-
             em.flush();
             em.clear();
 
             Team findTeam = em.find(Team.class, team.getId()); // 1차 캐시
-            List<Member> members = findTeam.getMembers();
 
             tx.commit();
         } catch (Exception e) {
