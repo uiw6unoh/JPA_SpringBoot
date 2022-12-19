@@ -4,6 +4,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class JpaMain {
@@ -17,19 +20,20 @@ public class JpaMain {
         tx.begin();
 
         try {
-            // 저장
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Member> query = cb.createQuery(Member.class);
 
-            Member member = new Member();
-            member.setUsername("member1");
-            em.persist(member);
+            Root<Member> m = query.from(Member.class);
 
-            em.flush();
-            em.clear();
+            CriteriaQuery<Member> cq = query.select(m);
 
-            Team findTeam = em.find(Team.class, team.getId()); // 1차 캐시
+            String username = "dsafas";
+            if (username != null) {
+                cq = cq.where(cb.equal(m.get("username"), "kim"));
+            }
+
+            List<Member> resultList = em.createQuery(cq)
+                            .getResultList();
 
             tx.commit();
         } catch (Exception e) {
