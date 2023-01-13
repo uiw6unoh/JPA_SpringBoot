@@ -4,7 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
-import study.datajpa.dto.MemberDto;
+import study.datajpa.dto.MemberDTO;
 import study.datajpa.entity.Member;
 
 import javax.persistence.LockModeType;
@@ -27,7 +27,7 @@ public interface MemberRepository extends JpaRepository<Member, Long>, MemberRep
     List<String> findUsernameList();
 
     @Query("select new study.datajpa.dto.MemberDto(m.id, m.username, t.name) from Member m join m.team t")
-    List<MemberDto> findMemberDto();
+    List<MemberDTO> findMemberDto();
 
     @Query("select m from Member m where m.username in :names")
     List<Member> findByNames(@Param("names") Collection<String> names);

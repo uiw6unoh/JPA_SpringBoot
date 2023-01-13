@@ -8,7 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
-import study.datajpa.dto.MemberDto;
+import study.datajpa.dto.MemberDTO;
 import study.datajpa.entity.Member;
 import study.datajpa.entity.Team;
 
@@ -112,8 +112,8 @@ class MemberRepositoryTest {
         m1.setTeam(team);
         memberRepository.save(m1);
 
-        List<MemberDto> memberDto = memberRepository.findMemberDto();
-        for (MemberDto dto : memberDto) {
+        List<MemberDTO> memberDto = memberRepository.findMemberDto();
+        for (MemberDTO dto : memberDto) {
             System.out.println("dto = " + dto);
         }
     }
@@ -157,7 +157,7 @@ class MemberRepositoryTest {
         // when
         Page<Member> page = memberRepository.findByAge(age, pageRequest);
 
-        Page<MemberDto> toMap = page.map(m -> new MemberDto(m.getId(), m.getUsername(), null));
+        Page<MemberDTO> toMap = page.map(m -> new MemberDTO(m.getId(), m.getUsername(), null));
 
         // then
         List<Member> content = page.getContent();
