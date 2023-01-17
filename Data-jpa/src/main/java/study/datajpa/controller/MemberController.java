@@ -21,13 +21,13 @@ public class MemberController {
     private final MemberRepository memberRepository;
 
     @GetMapping("/members/{id}")
-    public String findMember (@PathVariable("id") Long id) {
+    public String findMember(@PathVariable("id") Long id) {
         Member member = memberRepository.findById(id).get();
         return member.getUsername();
     }
 
     @GetMapping("/members2/{id}")
-    public String findMember2 (@PathVariable("id") Member member) {
+    public String findMember2(@PathVariable("id") Member member) {
         return member.getUsername();
     }
 

@@ -1,6 +1,5 @@
 package study.datajpa.entity;
 
-
 import lombok.Getter;
 
 import javax.persistence.Column;
