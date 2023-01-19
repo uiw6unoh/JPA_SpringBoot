@@ -27,14 +27,14 @@ class QuerydslApplicationTests {
 		em.persist(hello);
 
 		JPAQueryFactory query = new JPAQueryFactory(em);
-		QHello qHello = new QHello("h");
+		QHello qHello = new QHello("h"); // Querydsl Q타입 동작 확인
 
 		Hello result = query
 				.selectFrom(qHello)
 				.fetchOne();
 
 		assertThat(result).isEqualTo(hello);
-		assertThat(result.getId()).isEqualTo(hello.getId());
+		assertThat(result.getId()).isEqualTo(hello.getId()); // lombok 동작 확인 (hello.getId())
 	}
 
 }
