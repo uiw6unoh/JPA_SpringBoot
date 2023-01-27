@@ -41,7 +41,7 @@ public class MemberJpaRepository {
                 .getResultList();
     }
 
-    public List<Member>findAll_Quertdsl() {
+    public List<Member>findAll_Querydsl() {
         return queryFactory
                 .selectFrom(member)
                 .fetch();
@@ -89,6 +89,7 @@ public class MemberJpaRepository {
                 .fetch();
     }
 
+    // 회원명, 팀명, 나이(ageGoe, ageLoe)
     public List<MemberTeamDto> search(MemberSearchCondition condition) {
         return queryFactory
                 .select(new QMemberTeamDto(

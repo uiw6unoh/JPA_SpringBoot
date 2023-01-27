@@ -42,9 +42,7 @@ public class MemberQueryRepository {
                 .fetch();
     }
 
-    private BooleanExpression usernameEq(String username) {
-        return hasText(username) ? member.username.eq(username) : null;
-    }
+    private BooleanExpression usernameEq(String username) { return hasText(username) ? member.username.eq(username) : null; }
 
     private BooleanExpression teamNameEq(String teamName) {
         return  hasText(teamName) ? team.name.eq(teamName) : null;
@@ -54,7 +52,5 @@ public class MemberQueryRepository {
         return ageGoe != null ? member.age.goe(ageGoe) : null;
     }
 
-    private BooleanExpression ageLoe(Integer ageLoe) {
-        return ageLoe != null ? member.age.loe(ageLoe) : null;
-    }
+    private BooleanExpression ageLoe(Integer ageLoe) { return ageLoe != null ? member.age.loe(ageLoe) : null; }
 }
